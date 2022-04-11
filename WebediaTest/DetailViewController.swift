@@ -4,8 +4,7 @@
 
 import UIKit
 
-protocol ImageDownloadDelegate: class {
-    
+protocol ImageDownloadDelegate {
     func imageDownloadedForObject(object: [String : Any])
 }
 
