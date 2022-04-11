@@ -20,7 +20,7 @@ class MasterViewController: UITableViewController, ImageDownloadDelegate {
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     
-        sortingControl.addTarget(self, action: "sortingControlAction:", for: .valueChanged)
+      sortingControl.addTarget(self, action: #selector(self.sortingControlAction), for: .valueChanged)
     }
     
     override func viewDidAppear(_ animated: Bool) {
