@@ -9,8 +9,7 @@ class MasterViewController: UITableViewController, ImageDownloadDelegate {
   @IBOutlet weak var sortingControl: UISegmentedControl!
   
   var detailViewController: DetailViewController? = nil
-  var objects = [[String: Any]]()
-  
+  var forecast = Forecast()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,57 +25,31 @@ class MasterViewController: UITableViewController, ImageDownloadDelegate {
   override func viewDidAppear(_ animated: Bool) {
     if let forecastUrl = URL(string: "https://xmfw.github.io/forecast.json") {
       URLSession.shared.dataTask(with: forecastUrl, completionHandler: { (data, response, error) in
-        self.objects = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [[String: Any]]
+        self.forecast = try! JSONDecoder().decode(Forecast.self, from: data!)
         self.tableView.reloadData()
       }).resume()
     }
   }
   
-  func imageDownloadedForObject(object: [String : Any]) {
-    let i = objects.firstIndex { (comparedObject) -> Bool in
-      return (comparedObject["day"]! as! String) == (object["day"]! as! String)
-    }!
-    
-    objects[i] = object
-    
-    tableView.reloadData()
+  func imageDownloaded(for forecast: Day) {
+    //TODO: Update models and reloadData
   }
   
   @objc func sortingControlAction(_ segmentedControl: UISegmentedControl) {
-    if segmentedControl.selectedSegmentIndex == 1 { // switching to sorted option
-      objects.sort { (object1, object2) -> Bool in
-        return object1["high"]! as! Double > object2["high"]! as! Double
-      }
-      
-      var tempObjects = objects
-      for i in 0..<objects.count {
-        if (objects[i]["chance_rain"]! as! Double) > 0.5 {
-          tempObjects.removeAll { (object) -> Bool in
-            return object["chance_rain"]! as! Double == objects[i]["chance_rain"]! as! Double
-          }
-        }
-      }
-      objects = tempObjects
-    } else {
-      objects.sort { (object1, object2) -> Bool in
-        return (object1["day"]! as! String) < (object2["day"]! as! String)
-      }
-    }
-    
-    tableView.reloadData()
+    //TODO: Sort days and reloadData
   }
   
   // MARK: - Segues
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showDetail" {
       if let indexPath = tableView.indexPathForSelectedRow {
-        let object = objects[indexPath.row]
+        let forecast = forecast[indexPath.row]
         let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
         controller.delegate = self
-        controller.object = object
+        controller.day = forecast
         controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
         controller.navigationItem.leftItemsSupplementBackButton = true
-        controller.title = "Day \(object["day"]! as! String)"
+        controller.title = "Day \(forecast.day)"
       }
     }
   }
@@ -87,17 +60,15 @@ class MasterViewController: UITableViewController, ImageDownloadDelegate {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return objects.count
+    return forecast.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    let forecast = forecast[indexPath.row]
     
-    let object = objects[indexPath.row]
-    cell.textLabel!.text = "Day \(object["day"]!): \(object["description"]!)"
-    if let imageDownloaded = object["image_downloaded"] as? Bool, imageDownloaded {
-      cell.textLabel?.textColor = .gray
-    }
+    cell.textLabel?.text = "Day \(forecast.day): \(forecast.description)"
+    //TODO: Set textLabel color to gray if image has been downloaded
     
     return cell
   }
