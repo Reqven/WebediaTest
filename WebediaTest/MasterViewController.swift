@@ -13,6 +13,9 @@ class MasterViewController: UITableViewController, ImageDownloadDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    loadForecast()
+  
+    
     
     if let split = splitViewController {
       let controllers = split.viewControllers
@@ -22,12 +25,18 @@ class MasterViewController: UITableViewController, ImageDownloadDelegate {
     sortingControl.addTarget(self, action: #selector(self.sortingControlAction), for: .valueChanged)
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    if let forecastUrl = URL(string: "https://xmfw.github.io/forecast.json") {
-      URLSession.shared.dataTask(with: forecastUrl, completionHandler: { (data, response, error) in
-        self.forecast = try! JSONDecoder().decode(Forecast.self, from: data!)
-        self.tableView.reloadData()
-      }).resume()
+  private func loadForecast() {
+    let stringURL = "https://xmfw.github.io/forecast.json"
+    guard let forecastURL = URL(string: stringURL) else { return }
+    
+    Network.json(from: forecastURL, as: Forecast.self) { result in
+      switch(result) {
+        case .failure(let error): print(error)
+        case .success(let data): DispatchQueue.main.async {
+          self.forecast = data
+          self.tableView.reloadData()
+        }
+      }
     }
   }
   
