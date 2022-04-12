@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		324C86672804E71A008F4AED /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C86662804E71A008F4AED /* Forecast.swift */; };
 		324C866D2804FB4D008F4AED /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C866C2804FB4D008F4AED /* Network.swift */; };
+		324C86702805074C008F4AED /* ForecastType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C866F2805074C008F4AED /* ForecastType.swift */; };
 		81D27DBB27E1F00600C849E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D27DBA27E1F00600C849E5 /* AppDelegate.swift */; };
 		81D27DC227E1F00600C849E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D27DC027E1F00600C849E5 /* Main.storyboard */; };
 		81D27DC427E1F00800C849E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D27DC327E1F00800C849E5 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		324C86662804E71A008F4AED /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		324C866C2804FB4D008F4AED /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		324C866F2805074C008F4AED /* ForecastType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastType.swift; sourceTree = "<group>"; };
 		81D27DB727E1F00600C849E5 /* WebediaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebediaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D27DBA27E1F00600C849E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81D27DC127E1F00600C849E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		324C866E2805072F008F4AED /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				324C866F2805074C008F4AED /* ForecastType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		81D27DAE27E1F00600C849E5 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +86,7 @@
 		81D27DB927E1F00600C849E5 /* WebediaTest */ = {
 			isa = PBXGroup;
 			children = (
+				324C866E2805072F008F4AED /* Enums */,
 				324C866B2804FB44008F4AED /* Helper */,
 				324C86652804E6FE008F4AED /* Models */,
 				81D27DBA27E1F00600C849E5 /* AppDelegate.swift */,
@@ -163,6 +174,7 @@
 			files = (
 				324C866D2804FB4D008F4AED /* Network.swift in Sources */,
 				324C86672804E71A008F4AED /* Forecast.swift in Sources */,
+				324C86702805074C008F4AED /* ForecastType.swift in Sources */,
 				81D27DD127E1F32D00C849E5 /* DetailViewController.swift in Sources */,
 				81D27DCF27E1F30F00C849E5 /* MasterViewController.swift in Sources */,
 				81D27DBB27E1F00600C849E5 /* AppDelegate.swift in Sources */,
