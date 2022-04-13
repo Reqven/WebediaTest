@@ -8,7 +8,6 @@ class MasterViewController: UITableViewController {
   
   //MARK: - Properties
   @IBOutlet weak var sortingControl: UISegmentedControl!
-  var detailViewController: DetailViewController? = nil
   
   //MARK: DataSource
   var forecast = Forecast()
@@ -41,11 +40,6 @@ class MasterViewController: UITableViewController {
     super.viewDidLoad()
     loadForecast()
     
-    if let split = splitViewController {
-      let controllers = split.viewControllers
-      detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
-    }
-    
     sortingControl.addTarget(self, action: #selector(self.onSort), for: .valueChanged)
   }
   
@@ -67,21 +61,6 @@ class MasterViewController: UITableViewController {
   @objc func onSort(_ segmentedControl: UISegmentedControl) {
     tableView.reloadData()
   }
-  
-  // MARK: - Segues
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "showDetail" {
-      if let indexPath = tableView.indexPathForSelectedRow {
-        let day = dataSource[indexPath.row]
-        let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-        controller.delegate = self
-        controller.day = day
-        controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        controller.navigationItem.leftItemsSupplementBackButton = true
-        controller.title = "Day \(day.day)"
-      }
-    }
-  }
 }
 
 
@@ -90,6 +69,14 @@ extension MasterViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+    
+    guard let splitViewController = splitViewController as? SplitViewController,
+          let rootNavigationController = splitViewController.detailRootController,
+          let detailViewController = rootNavigationController.topViewController as? DetailViewController
+    else { return }
+    
+    detailViewController.day = dataSource[indexPath.row]
+    splitViewController.showDetailViewController(rootNavigationController, sender: self)
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

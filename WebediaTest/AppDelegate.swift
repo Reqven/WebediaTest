@@ -4,22 +4,13 @@
 
 import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    let splitViewController = window!.rootViewController as! UISplitViewController
-    let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
-    navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-    splitViewController.delegate = self
+    // Override point for customization after application launch.
     return true
   }
-  
-  func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController:UIViewController, onto primaryViewController:UIViewController) -> Bool {
-    return true
-  }
-  
 }
-

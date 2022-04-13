@@ -19,24 +19,17 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var imageView: UIImageView!
   
   var delegate: ImageDownloadDelegate?
-  var day: Day?
+  var day: Day? {
+    didSet {
+      updateView()
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    configureView()
+    setup()
   }
-  
-  func configureView() {
-    guard let day = day else { return }
 
-    forecastLabel.text = day.description
-    sunriseLabel.text = "\(day.sunrise) seconds"
-    sunsetLabel.text = "\(day.sunset) seconds"
-    highLabel.text = "\(day.high)ºC"
-    lowLabel.text = "\(day.low)ºC"
-    chanceOfRainLabel.text = "\(day.chanceRain)%"
-  }
-  
   @IBAction func downloadImage(_ sender: Any) {
     guard let forecast = day else { return }
     
@@ -47,5 +40,30 @@ class DetailViewController: UIViewController {
         self.delegate!.imageDownloaded(for: forecast)
       }).resume()
     }
+  }
+}
+
+
+//MARK: - Setup
+extension DetailViewController {
+  
+  private func setup() {
+    if #unavailable(iOS 14) {
+      navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+      navigationItem.leftItemsSupplementBackButton = true
+    }
+  }
+  
+  private func updateView() {
+    guard let day = day else { return }
+    loadViewIfNeeded()
+
+    title = "Day \(day.day)"
+    forecastLabel.text = day.description
+    sunriseLabel.text = "\(day.sunrise) seconds"
+    sunsetLabel.text = "\(day.sunset) seconds"
+    highLabel.text = "\(day.high)ºC"
+    lowLabel.text = "\(day.low)ºC"
+    chanceOfRainLabel.text = "\(day.chanceRain)%"
   }
 }
