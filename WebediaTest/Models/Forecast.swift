@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias ForecastList = [Forecast]
-
 struct Forecast: Codable {
   let day: String
   var description: String
@@ -28,5 +26,22 @@ struct Forecast: Codable {
     case high
     case low
     case image
+  }
+}
+
+typealias ForecastList = [Forecast]
+
+
+extension ForecastList {
+  
+  func upcoming() -> Self {
+    let result: ComparisonResult = .orderedAscending
+    return self.sorted { $0.day.localizedStandardCompare($1.day) == result }
+  }
+  
+  func hottest() -> Self {
+    return self
+      .filter { $0.chanceRain < 0.5 }
+      .sorted { $0.high > $1.high }
   }
 }

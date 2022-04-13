@@ -11,14 +11,8 @@ class MasterViewController: UITableViewController {
   
   //MARK: DataSource
   var forecast = ForecastList()
-  var upcoming: ForecastList {
-    forecast.sorted { $0.day < $1.day }
-  }
-  var hottest: ForecastList {
-    forecast
-      .filter { $0.chanceRain < 0.5 }
-      .sorted { $0.high > $1.high }
-  }
+  var upcoming: ForecastList { forecast.upcoming() }
+  var hottest: ForecastList { forecast.hottest() }
   
   //MARK: DataSourceType
   private var dataSourceIndex: Int {
