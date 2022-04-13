@@ -5,7 +5,7 @@
 import UIKit
 
 protocol ImageDownloadDelegate {
-  func imageDownloaded(for day: Day)
+  func imageDownloaded(for day: Forecast)
 }
 
 class DetailViewController: UIViewController {
@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var imageView: UIImageView!
   
   var delegate: ImageDownloadDelegate?
-  var day: Day? {
+  var day: Forecast? {
     didSet {
       updateView()
     }

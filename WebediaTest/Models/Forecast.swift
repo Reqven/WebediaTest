@@ -7,9 +7,9 @@
 
 import Foundation
 
-typealias Forecast = [Day]
+typealias ForecastList = [Forecast]
 
-struct Day: Codable {
+struct Forecast: Codable {
   let day: String
   var description: String
   let sunrise: Int

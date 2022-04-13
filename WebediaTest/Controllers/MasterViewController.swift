@@ -10,11 +10,11 @@ class MasterViewController: UITableViewController {
   @IBOutlet weak var sortingControl: UISegmentedControl!
   
   //MARK: DataSource
-  var forecast = Forecast()
-  var upcoming: Forecast {
+  var forecast = ForecastList()
+  var upcoming: ForecastList {
     forecast.sorted { $0.day < $1.day }
   }
-  var hottest: Forecast {
+  var hottest: ForecastList {
     forecast
       .filter { $0.chanceRain < 0.5 }
       .sorted { $0.high > $1.high }
@@ -24,10 +24,10 @@ class MasterViewController: UITableViewController {
   private var dataSourceIndex: Int {
     sortingControl.selectedSegmentIndex
   }
-  private var dataSourceType: ForecastType? {
-    ForecastType(rawValue: dataSourceIndex)
+  private var dataSourceType: ForecastListType? {
+    ForecastListType(rawValue: dataSourceIndex)
   }
-  private var dataSource: Forecast {
+  private var dataSource: ForecastList {
     guard let type = dataSourceType else { return [] }
     switch(type) {
       case .upcoming: return upcoming
@@ -47,7 +47,7 @@ class MasterViewController: UITableViewController {
     let stringURL = "https://xmfw.github.io/forecast.json"
     guard let forecastURL = URL(string: stringURL) else { return }
     
-    Network.json(from: forecastURL, as: Forecast.self) { result in
+    Network.json(from: forecastURL, as: ForecastList.self) { result in
       switch(result) {
         case .failure(let error): print(error)
         case .success(let data): DispatchQueue.main.async {
@@ -98,7 +98,7 @@ extension MasterViewController {
 //MARK: - ImageDownloadDelegate
 extension MasterViewController: ImageDownloadDelegate {
   
-  func imageDownloaded(for forecast: Day) {
+  func imageDownloaded(for forecast: Forecast) {
     //TODO: Update models and reloadData
   }
 }

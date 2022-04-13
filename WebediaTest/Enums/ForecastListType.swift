@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ForecastType: Int {
+enum ForecastListType: Int {
   case upcoming
   case hottest
 }
