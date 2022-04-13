@@ -170,17 +170,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="2iT-Hh-cBD">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="sN9-nh-z32" userLabel="Header">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Upcoming"/>
-                                <segment title="Hottest"/>
-                            </segments>
-                        </segmentedControl>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rOL-Bl-yms">
+                                    <rect key="frame" x="16" y="8" width="343" height="29"/>
+                                    <segments>
+                                        <segment title="Upcoming"/>
+                                        <segment title="Hottest"/>
+                                    </segments>
+                                </segmentedControl>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="rOL-Bl-yms" firstAttribute="leading" secondItem="sN9-nh-z32" secondAttribute="leadingMargin" id="Aue-BE-6Fu"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="rOL-Bl-yms" secondAttribute="trailing" id="bQj-Ya-Pp6"/>
+                                <constraint firstItem="rOL-Bl-yms" firstAttribute="top" secondItem="sN9-nh-z32" secondAttribute="topMargin" id="pgp-RA-S5e"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="rOL-Bl-yms" secondAttribute="bottom" id="q51-Op-hJO"/>
+                            </constraints>
+                            <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ForecastCell" textLabel="Arm-wq-HPj" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD" customClass="ForecastCell" customModule="WebediaTest" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="74.5" width="375" height="47.5"/>
+                                <rect key="frame" x="0.0" y="88.5" width="375" height="47.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
@@ -202,7 +214,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Forecast" id="Zdf-7t-Un8"/>
                     <connections>
-                        <outlet property="sortingControl" destination="2iT-Hh-cBD" id="4o8-4q-LS6"/>
+                        <outlet property="sortingControl" destination="rOL-Bl-yms" id="Ui7-3g-xYR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
