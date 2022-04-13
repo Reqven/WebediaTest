@@ -55,16 +55,7 @@ extension MasterViewController: ForecastListDelegate {
     guard let rootNavigationController = splitViewController.detailRootController else { return }
     guard let detailViewController = rootNavigationController.topViewController as? DetailViewController else { return }
     
-    detailViewController.day = forecast
+    detailViewController.viewModel = DetailViewControllerViewModel(forecast: forecast)
     splitViewController.showDetailViewController(rootNavigationController, sender: self)
-  }
-}
-
-
-//MARK: - ImageDownloadDelegate
-extension MasterViewController: ImageDownloadDelegate {
-  
-  func imageDownloaded(for forecast: Forecast) {
-    //TODO: Update models and reloadData
   }
 }

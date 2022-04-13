@@ -5,11 +5,12 @@
 import UIKit
 
 protocol ImageDownloadDelegate {
-  func imageDownloaded(for day: Forecast)
+  func didDownloadImage()
 }
 
 class DetailViewController: UIViewController {
   
+  //MARK: - Properties
   @IBOutlet weak var forecastLabel: UILabel!
   @IBOutlet weak var sunriseLabel: UILabel!
   @IBOutlet weak var sunsetLabel: UILabel!
@@ -18,28 +19,23 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var chanceOfRainLabel: UILabel!
   @IBOutlet weak var imageView: UIImageView!
   
-  var delegate: ImageDownloadDelegate?
-  var day: Forecast? {
+  var viewModel: DetailViewControllerViewModel? {
     didSet {
+      viewModel?.delegate = self
       updateView()
     }
   }
   
+  
+  //MARK: - Methods
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
   }
 
   @IBAction func downloadImage(_ sender: Any) {
-    guard let forecast = day else { return }
-    
-    if let forecastUrl = URL(string: forecast.image) {
-      let imageDownloadSession = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-      imageDownloadSession.dataTask(with: forecastUrl, completionHandler: { (data, response, error) in
-        self.imageView.image = UIImage(data: data!)
-        self.delegate!.imageDownloaded(for: forecast)
-      }).resume()
-    }
+    guard let viewModel = viewModel else { return }
+    viewModel.downloadImage()
   }
 }
 
@@ -55,15 +51,25 @@ extension DetailViewController {
   }
   
   private func updateView() {
-    guard let day = day else { return }
+    guard let viewModel = viewModel else { return }
     loadViewIfNeeded()
 
-    title = "Day \(day.day)"
-    forecastLabel.text = day.description
-    sunriseLabel.text = "\(day.sunrise) seconds"
-    sunsetLabel.text = "\(day.sunset) seconds"
-    highLabel.text = "\(day.high)ºC"
-    lowLabel.text = "\(day.low)ºC"
-    chanceOfRainLabel.text = "\(day.chanceRain)%"
+    title = viewModel.title
+    forecastLabel.text = viewModel.description
+    sunriseLabel.text = viewModel.sunrise
+    sunsetLabel.text = viewModel.sunset
+    highLabel.text = viewModel.high
+    lowLabel.text = viewModel.low
+    chanceOfRainLabel.text = viewModel.rain
+    imageView.image = viewModel.image
+  }
+}
+
+
+//MARK: - ImageDownloadDelegate
+extension DetailViewController: ImageDownloadDelegate {
+  
+  func didDownloadImage() {
+    updateView()
   }
 }

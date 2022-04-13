@@ -13,6 +13,7 @@
 		32570E502806503F0069FB33 /* SplitViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32570E4F2806503F0069FB33 /* SplitViewViewController.swift */; };
 		32570E59280669640069FB33 /* ForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32570E58280669640069FB33 /* ForecastCell.swift */; };
 		32570E5B28066CDE0069FB33 /* MasterViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32570E5A28066CDE0069FB33 /* MasterViewControllerViewModel.swift */; };
+		326925282806F38500315413 /* DetailViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326925272806F38500315413 /* DetailViewControllerViewModel.swift */; };
 		81D27DBB27E1F00600C849E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D27DBA27E1F00600C849E5 /* AppDelegate.swift */; };
 		81D27DC227E1F00600C849E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D27DC027E1F00600C849E5 /* Main.storyboard */; };
 		81D27DC427E1F00800C849E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D27DC327E1F00800C849E5 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		32570E4F2806503F0069FB33 /* SplitViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewViewController.swift; sourceTree = "<group>"; };
 		32570E58280669640069FB33 /* ForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCell.swift; sourceTree = "<group>"; };
 		32570E5A28066CDE0069FB33 /* MasterViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewControllerViewModel.swift; sourceTree = "<group>"; };
+		326925272806F38500315413 /* DetailViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerViewModel.swift; sourceTree = "<group>"; };
 		81D27DB727E1F00600C849E5 /* WebediaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebediaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D27DBA27E1F00600C849E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81D27DC127E1F00600C849E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				81D27DD027E1F32D00C849E5 /* DetailViewController.swift */,
+				326925272806F38500315413 /* DetailViewControllerViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -143,14 +146,14 @@
 		81D27DB927E1F00600C849E5 /* WebediaTest */ = {
 			isa = PBXGroup;
 			children = (
-				32570E56280669570069FB33 /* Views */,
 				32570E51280664FA0069FB33 /* Controllers */,
 				324C866E2805072F008F4AED /* Enums */,
 				324C866B2804FB44008F4AED /* Helper */,
 				324C86652804E6FE008F4AED /* Models */,
+				32570E56280669570069FB33 /* Views */,
+				81D27DC327E1F00800C849E5 /* Assets.xcassets */,
 				81D27DBA27E1F00600C849E5 /* AppDelegate.swift */,
 				81D27DC027E1F00600C849E5 /* Main.storyboard */,
-				81D27DC327E1F00800C849E5 /* Assets.xcassets */,
 				81D27DC527E1F00800C849E5 /* LaunchScreen.storyboard */,
 				81D27DC827E1F00800C849E5 /* Info.plist */,
 			);
@@ -231,6 +234,7 @@
 			files = (
 				324C866D2804FB4D008F4AED /* Network.swift in Sources */,
 				32570E502806503F0069FB33 /* SplitViewViewController.swift in Sources */,
+				326925282806F38500315413 /* DetailViewControllerViewModel.swift in Sources */,
 				324C86672804E71A008F4AED /* Forecast.swift in Sources */,
 				324C86702805074C008F4AED /* ForecastListType.swift in Sources */,
 				32570E59280669640069FB33 /* ForecastCell.swift in Sources */,
