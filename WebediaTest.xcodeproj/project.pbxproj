@@ -12,6 +12,7 @@
 		324C86702805074C008F4AED /* ForecastListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324C866F2805074C008F4AED /* ForecastListType.swift */; };
 		32570E502806503F0069FB33 /* SplitViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32570E4F2806503F0069FB33 /* SplitViewViewController.swift */; };
 		32570E59280669640069FB33 /* ForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32570E58280669640069FB33 /* ForecastCell.swift */; };
+		32570E5B28066CDE0069FB33 /* MasterViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32570E5A28066CDE0069FB33 /* MasterViewControllerViewModel.swift */; };
 		81D27DBB27E1F00600C849E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D27DBA27E1F00600C849E5 /* AppDelegate.swift */; };
 		81D27DC227E1F00600C849E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D27DC027E1F00600C849E5 /* Main.storyboard */; };
 		81D27DC427E1F00800C849E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D27DC327E1F00800C849E5 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		324C866F2805074C008F4AED /* ForecastListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastListType.swift; sourceTree = "<group>"; };
 		32570E4F2806503F0069FB33 /* SplitViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewViewController.swift; sourceTree = "<group>"; };
 		32570E58280669640069FB33 /* ForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCell.swift; sourceTree = "<group>"; };
+		32570E5A28066CDE0069FB33 /* MasterViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewControllerViewModel.swift; sourceTree = "<group>"; };
 		81D27DB727E1F00600C849E5 /* WebediaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebediaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D27DBA27E1F00600C849E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81D27DC127E1F00600C849E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,9 +76,9 @@
 		32570E51280664FA0069FB33 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				81D27DCE27E1F30F00C849E5 /* MasterViewController.swift */,
-				81D27DD027E1F32D00C849E5 /* DetailViewController.swift */,
-				32570E4F2806503F0069FB33 /* SplitViewViewController.swift */,
+				32570E5D2806771F0069FB33 /* Detail */,
+				32570E5C280672600069FB33 /* Master */,
+				32570E5E2806775F0069FB33 /* Split */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -95,6 +97,31 @@
 				32570E58280669640069FB33 /* ForecastCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		32570E5C280672600069FB33 /* Master */ = {
+			isa = PBXGroup;
+			children = (
+				81D27DCE27E1F30F00C849E5 /* MasterViewController.swift */,
+				32570E5A28066CDE0069FB33 /* MasterViewControllerViewModel.swift */,
+			);
+			path = Master;
+			sourceTree = "<group>";
+		};
+		32570E5D2806771F0069FB33 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				81D27DD027E1F32D00C849E5 /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		32570E5E2806775F0069FB33 /* Split */ = {
+			isa = PBXGroup;
+			children = (
+				32570E4F2806503F0069FB33 /* SplitViewViewController.swift */,
+			);
+			path = Split;
 			sourceTree = "<group>";
 		};
 		81D27DAE27E1F00600C849E5 = {
@@ -207,6 +234,7 @@
 				324C86672804E71A008F4AED /* Forecast.swift in Sources */,
 				324C86702805074C008F4AED /* ForecastListType.swift in Sources */,
 				32570E59280669640069FB33 /* ForecastCell.swift in Sources */,
+				32570E5B28066CDE0069FB33 /* MasterViewControllerViewModel.swift in Sources */,
 				81D27DD127E1F32D00C849E5 /* DetailViewController.swift in Sources */,
 				81D27DCF27E1F30F00C849E5 /* MasterViewController.swift in Sources */,
 				81D27DBB27E1F00600C849E5 /* AppDelegate.swift in Sources */,
