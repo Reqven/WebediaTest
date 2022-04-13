@@ -84,12 +84,8 @@ extension MasterViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-    let forecast = dataSource[indexPath.row]
-    
-    cell.textLabel?.text = "Day \(forecast.day): \(forecast.description)"
-    //TODO: Set textLabel color to gray if image has been downloaded
-    
+    let cell = tableView.dequeueReusableCell(withIdentifier: ForecastCell.reusableIdentifier, for: indexPath) as! ForecastCell
+    cell.configure(with: dataSource[indexPath.row])
     return cell
   }
 }
