@@ -14,6 +14,9 @@ class ForecastCell: UITableViewCell {
   private var indicatorImageView: UIImageView? {
     accessoryView as? UIImageView
   }
+  private var viewModel: ForecastCellViewModel? {
+    didSet { updateView() }
+  }
 
   //MARK: - Methods
   required init?(coder: NSCoder) {
@@ -26,10 +29,15 @@ class ForecastCell: UITableViewCell {
     indicatorImageView?.image = nil
   }
   
-  func configure(with forecast: Forecast) {
-    textLabel?.text = "Day \(forecast.day): \(forecast.description)"
+  func configure(with viewModel: ForecastCellViewModel) {
+    self.viewModel = viewModel
+  }
+  
+  private func updateView() {
+    guard let viewModel = viewModel else { return }
+    textLabel?.text = viewModel.title
     
-    guard let _ = forecast.image else { return }
+    guard viewModel.imageDownloaded else { return }
     let image = UIImage(compatibleSystemName: "photo")
     indicatorImageView?.image = image?.withRenderingMode(.alwaysTemplate)
     indicatorImageView?.sizeToFit()

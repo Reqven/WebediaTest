@@ -71,7 +71,7 @@ extension MasterViewControllerViewModel: UITableViewDataSource, UITableViewDeleg
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: ForecastCell.reusableIdentifier, for: indexPath) as! ForecastCell
-    cell.configure(with: dataSource[indexPath.row])
+    cell.configure(with: ForecastCellViewModel(forecast: dataSource[indexPath.row]))
     return cell
   }
 }
