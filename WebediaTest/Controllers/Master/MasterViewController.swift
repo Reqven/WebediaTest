@@ -4,17 +4,11 @@
 
 import UIKit
 
-protocol MasterViewControllerDelegate {
-  func didSort(with type: ForecastListType)
-}
-
 class MasterViewController: UITableViewController {
   
   //MARK: - Properties
   @IBOutlet weak var sortingControl: UISegmentedControl!
   private var viewModel = MasterViewControllerViewModel()
-  private var delegate: MasterViewControllerDelegate?
-  
 
   //MARK: - Methods
   override func viewDidLoad() {
@@ -24,9 +18,8 @@ class MasterViewController: UITableViewController {
   
   private func setup() {
     viewModel.delegate = self
-    viewModel.loadForecast()
+    viewModel.loadData()
     
-    delegate = viewModel
     tableView.delegate = viewModel
     tableView.dataSource = viewModel
     
@@ -41,7 +34,7 @@ class MasterViewController: UITableViewController {
     let index = segmentedControl.selectedSegmentIndex
     guard let type = ForecastListType(rawValue: index) else { return }
     
-    delegate?.didSort(with: type)
+    viewModel.sortData(with: type)
     tableView.reloadData()
   }
 }

@@ -31,7 +31,7 @@ class MasterViewControllerViewModel: NSObject {
   
   
   //MARK: - Methods
-  func loadForecast() {
+  func loadData() {
     let stringURL = "https://xmfw.github.io/forecast.json"
     guard let forecastURL = URL(string: stringURL) else { return }
     
@@ -45,13 +45,8 @@ class MasterViewControllerViewModel: NSObject {
       }
     }
   }
-}
-
-
-//MARK: - MasterViewControllerDelegate
-extension MasterViewControllerViewModel: MasterViewControllerDelegate {
   
-  func didSort(with type: ForecastListType) {
+  func sortData(with type: ForecastListType) {
     dataSourceType = type
   }
 }
