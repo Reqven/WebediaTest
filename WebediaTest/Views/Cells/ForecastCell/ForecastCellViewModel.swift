@@ -12,7 +12,7 @@ class ForecastCellViewModel {
   //MARK: - Properties
   private var forecast: Forecast
   var imageDownloaded: Bool { forecast.image != nil }
-  var title: String { "Day \(forecast.day): \(forecast.description)" }
+  var label: String { "Day \(forecast.day): \(forecast.description)" }
   
   //MARK: - Methods
   init(forecast: Forecast) {

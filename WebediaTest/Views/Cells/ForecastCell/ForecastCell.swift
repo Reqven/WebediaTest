@@ -2,31 +2,26 @@
 //  ForecastCell.swift
 //  WebediaTest
 //
-//  Created by Manu on 13/04/2022.
+//  Created by Manu on 14/04/2022.
 //
 
 import UIKit
 
 class ForecastCell: UITableViewCell {
-  
+
   //MARK: - Properties
   static let reusableIdentifier = "ForecastCell"
-  private var indicatorImageView: UIImageView? {
-    accessoryView as? UIImageView
-  }
+  @IBOutlet weak var forecastLabel: UILabel!
+  @IBOutlet weak var downloadedImageView: UIImageView!
+  
   private var viewModel: ForecastCellViewModel? {
     didSet { updateView() }
   }
 
   //MARK: - Methods
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
-    accessoryView = UIImageView()
-  }
-  
   override func prepareForReuse() {
     super.prepareForReuse()
-    indicatorImageView?.image = nil
+    downloadedImageView.image = nil
   }
   
   func configure(with viewModel: ForecastCellViewModel) {
@@ -35,11 +30,11 @@ class ForecastCell: UITableViewCell {
   
   private func updateView() {
     guard let viewModel = viewModel else { return }
-    textLabel?.text = viewModel.title
+    forecastLabel.text = viewModel.label
     
     guard viewModel.imageDownloaded else { return }
     let image = UIImage(compatibleSystemName: "photo")
-    indicatorImageView?.image = image?.withRenderingMode(.alwaysTemplate)
-    indicatorImageView?.sizeToFit()
+    downloadedImageView.image = image?.withRenderingMode(.alwaysTemplate)
+    downloadedImageView.sizeToFit()
   }
 }

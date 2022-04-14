@@ -8,64 +8,44 @@ protocol ForecastUpdateDelegate {
   func didUpdateForecast()
 }
 
-class DetailViewController: UIViewController {
+class DetailViewController: UITableViewController {
   
   //MARK: - Properties
-  @IBOutlet weak var forecastLabel: UILabel!
-  @IBOutlet weak var sunriseLabel: UILabel!
-  @IBOutlet weak var sunsetLabel: UILabel!
-  @IBOutlet weak var highLabel: UILabel!
-  @IBOutlet weak var lowLabel: UILabel!
-  @IBOutlet weak var chanceOfRainLabel: UILabel!
-  @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var downloadButton: UIButton!
-  
   var delegate: ForecastUpdateDelegate?
   var viewModel: DetailViewControllerViewModel? {
-    didSet {
-      viewModel?.delegate = self
-      updateView()
-    }
+    didSet { updateView() }
   }
-  
   
   //MARK: - Methods
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
   }
-
-  @IBAction func downloadImage(_ sender: Any) {
-    guard let viewModel = viewModel else { return }
-    viewModel.downloadImage()
-  }
-}
-
-
-//MARK: - Setup
-extension DetailViewController {
   
   private func setup() {
+    let nib = UINib(nibName: ImageCell.reusableIdentifier, bundle: .main)
+    tableView.register(nib, forCellReuseIdentifier: ImageCell.reusableIdentifier)
+    
     if #unavailable(iOS 14) {
-      navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
       navigationItem.leftItemsSupplementBackButton = true
+      navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
     }
   }
   
   private func updateView() {
     guard let viewModel = viewModel else { return }
-    loadViewIfNeeded()
+    viewModel.delegate = self
 
     title = viewModel.title
-    forecastLabel.text = viewModel.description
-    sunriseLabel.text = viewModel.sunrise
-    sunsetLabel.text = viewModel.sunset
-    highLabel.text = viewModel.high
-    lowLabel.text = viewModel.low
-    chanceOfRainLabel.text = viewModel.rain
-    imageView.image = viewModel.image
+    tableView.dataSource = viewModel
+    tableView.reloadData()
     
-    downloadButton.isHidden = viewModel.image != nil
+    downloadButton.isHidden = viewModel.imageDownloaded
+  }
+  
+  @IBAction func onDownload(_ sender: UIButton) {
+    viewModel?.downloadImage()
   }
 }
 
@@ -74,7 +54,8 @@ extension DetailViewController {
 extension DetailViewController: ImageDownloadDelegate {
   
   func didDownloadImage() {
+    downloadButton.isHidden = true
     delegate?.didUpdateForecast()
-    updateView()
+    tableView.reloadData()
   }
 }

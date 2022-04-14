@@ -30,6 +30,10 @@ class MasterViewController: UITableViewController {
     tableView.delegate = viewModel
     tableView.dataSource = viewModel
     
+    tableView.tableFooterView = UIView()
+    let nib = UINib(nibName: ForecastCell.reusableIdentifier, bundle: .main)
+    tableView.register(nib, forCellReuseIdentifier: ForecastCell.reusableIdentifier)
+    
     sortingControl.addTarget(self, action: #selector(self.onSort), for: .valueChanged)
   }
   

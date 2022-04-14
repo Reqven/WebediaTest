@@ -11,21 +11,25 @@ protocol ImageDownloadDelegate {
   func didDownloadImage()
 }
 
-class DetailViewControllerViewModel {
+class DetailViewControllerViewModel: NSObject {
   
   //MARK: - Properties
   private var forecast: Forecast
+  private var dataSource: [ForecastViewModelItem] {
+    guard let _ = forecast.image else { return [attributesSection] }
+    return [attributesSection, imageSection]
+  }
+  
+  private var attributesSection: ForecastViewModelAttributesItem {
+    ForecastViewModelAttributesItem(forecast: forecast)
+  }
+  private var imageSection: ForecastViewModelImageItem {
+    ForecastViewModelImageItem(forecast: forecast)
+  }
+  
   var delegate: ImageDownloadDelegate?
-  
   var title: String { "Day \(forecast.day)" }
-  var description: String { forecast.description }
-  
-  var image: UIImage? { forecast.image }
-  var low: String { "\(forecast.low)ºC" }
-  var high: String { "\(forecast.high)ºC" }
-  var rain: String { "\(forecast.chanceRain)%" }
-  var sunset: String { "\(forecast.sunset) seconds" }
-  var sunrise: String { "\(forecast.sunrise) seconds" }
+  var imageDownloaded: Bool { forecast.image != nil }
   
   
   //MARK: - Methods
@@ -46,5 +50,42 @@ class DetailViewControllerViewModel {
         }
       }
     }
+  }
+}
+
+
+//MARK: - TableView
+extension DetailViewControllerViewModel: UITableViewDataSource {
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return dataSource.count
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return dataSource[section].rowCount
+  }
+  
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    return dataSource[section].sectionTitle
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let viewModelItem = dataSource[indexPath.section]
+    
+    switch(viewModelItem.type) {
+      case .attribute:
+        if let item = viewModelItem as? ForecastViewModelAttributesItem {
+          let cell = tableView.dequeueReusableCell(withIdentifier: AttributeCell.reusableIdentifier, for: indexPath) as! AttributeCell
+          cell.configure(with: AttributeCellViewModel(attribute: item.attribute(for: indexPath)))
+          return cell
+        }
+      case .image:
+        if let item = viewModelItem as? ForecastViewModelImageItem {
+          let cell = tableView.dequeueReusableCell(withIdentifier: ImageCell.reusableIdentifier, for: indexPath) as! ImageCell
+          cell.configure(with: ImageCellViewModel(image: item.image))
+          return cell
+        }
+      }
+    return UITableViewCell()
   }
 }
