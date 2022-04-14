@@ -39,7 +39,7 @@ class ForecastViewModelAttributesItem: ForecastViewModelItem {
       Attribute(name: "Sunset", value: "\(forecast.sunset) seconds"),
       Attribute(name: "High", value: "\(forecast.high)ºC"),
       Attribute(name: "Low", value: "\(forecast.low)ºC"),
-      Attribute(name: "Chance of rain", value: "\(forecast.chanceRain)%")
+      Attribute(name: "Chance of rain", value: "\(Int(forecast.chanceRain * 100))%")
     ]
   }
   
