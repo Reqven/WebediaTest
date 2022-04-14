@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ForecastListDelegate {
-  func didLoad()
+  func didLoad(error: Bool)
   func didSelect(forecast: Forecast)
 }
 
@@ -37,10 +37,13 @@ class MasterViewControllerViewModel: NSObject {
     
     Network.json(from: forecastURL, as: ForecastList.self) { result in
       switch(result) {
-      case .failure(let error): print(error)
+        case .failure(let error): DispatchQueue.main.async {
+          print(error.localizedDescription)
+          self.delegate?.didLoad(error: true)
+        }
         case .success(let data): DispatchQueue.main.async {
           self.forecast = data
-          self.delegate?.didLoad()
+          self.delegate?.didLoad(error: false)
         }
       }
     }

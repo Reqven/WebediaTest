@@ -43,8 +43,12 @@ class MasterViewController: UITableViewController {
 //MARK: - ForecastListDelegate
 extension MasterViewController: ForecastListDelegate {
   
-  func didLoad() {
-    tableView.reloadData()
+  func didLoad(error: Bool) {
+    guard error else {
+      tableView.reloadData()
+      return
+    }
+    presentAlert(title: "Error", message: "An error occured when fetching data from the API. Check the logs for more information.")
   }
   
   func didSelect(forecast: Forecast) {

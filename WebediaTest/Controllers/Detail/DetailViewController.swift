@@ -53,9 +53,14 @@ class DetailViewController: UITableViewController {
 //MARK: - ImageDownloadDelegate
 extension DetailViewController: ImageDownloadDelegate {
   
-  func didDownloadImage() {
-    downloadButton.isHidden = true
-    delegate?.didUpdateForecast()
-    tableView.reloadData()
+  func didDownloadImage(error: Bool) {
+    guard error else {
+      downloadButton.isHidden = true
+      delegate?.didUpdateForecast()
+      tableView.reloadData()
+      return
+    }
+    presentAlert(title: "Error", message: "An error occured when downloading the image. Check the logs for more information.")
+
   }
 }

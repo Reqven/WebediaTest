@@ -20,6 +20,8 @@ class Network {
           } catch let error {
             completion(.failure(error))
           }
+      } else {
+        completion(.failure(CError.invalidData))
       }
     }.resume()
   }
@@ -30,6 +32,8 @@ class Network {
         completion(.failure(error))
       } else if let data = data, let image = UIImage(data: data) {
         completion(.success(image))
+      } else {
+        completion(.failure(CError.invalidImage))
       }
     }.resume()
   }

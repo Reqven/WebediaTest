@@ -15,6 +15,8 @@
 		32570E502806503F0069FB33 /* SplitViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32570E4F2806503F0069FB33 /* SplitViewViewController.swift */; };
 		32570E5B28066CDE0069FB33 /* MasterViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32570E5A28066CDE0069FB33 /* MasterViewControllerViewModel.swift */; };
 		326925282806F38500315413 /* DetailViewControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326925272806F38500315413 /* DetailViewControllerViewModel.swift */; };
+		32B8E2222807FFDE00675544 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B8E2212807FFDE00675544 /* Error.swift */; };
+		32B8E2242808005700675544 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B8E2232808005700675544 /* UIViewController+Ext.swift */; };
 		32D1F21328078B2000EB8958 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D1F21228078B2000EB8958 /* UIImage+Ext.swift */; };
 		32D7F7E728079EA3008468B3 /* ForecastCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7F7E628079EA3008468B3 /* ForecastCellViewModel.swift */; };
 		32D7F7E92807A855008468B3 /* ForecastViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D7F7E82807A855008468B3 /* ForecastViewModelItem.swift */; };
@@ -41,6 +43,8 @@
 		32570E4F2806503F0069FB33 /* SplitViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewViewController.swift; sourceTree = "<group>"; };
 		32570E5A28066CDE0069FB33 /* MasterViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewControllerViewModel.swift; sourceTree = "<group>"; };
 		326925272806F38500315413 /* DetailViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerViewModel.swift; sourceTree = "<group>"; };
+		32B8E2212807FFDE00675544 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		32B8E2232808005700675544 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		32D1F21228078B2000EB8958 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		32D7F7E628079EA3008468B3 /* ForecastCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCellViewModel.swift; sourceTree = "<group>"; };
 		32D7F7E82807A855008468B3 /* ForecastViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModelItem.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				324C866C2804FB4D008F4AED /* Network.swift */,
+				32B8E2212807FFDE00675544 /* Error.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				32D1F21228078B2000EB8958 /* UIImage+Ext.swift */,
+				32B8E2232808005700675544 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -207,8 +213,8 @@
 		81D27DB927E1F00600C849E5 /* WebediaTest */ = {
 			isa = PBXGroup;
 			children = (
-				32D1F21128078B1500EB8958 /* Extensions */,
 				32570E51280664FA0069FB33 /* Controllers */,
+				32D1F21128078B1500EB8958 /* Extensions */,
 				324C866E2805072F008F4AED /* Enums */,
 				324C866B2804FB44008F4AED /* Helper */,
 				324C86652804E6FE008F4AED /* Models */,
@@ -298,6 +304,7 @@
 			files = (
 				32261D752807EB0E00D54CE1 /* ForecastCell.swift in Sources */,
 				324C866D2804FB4D008F4AED /* Network.swift in Sources */,
+				32B8E2242808005700675544 /* UIViewController+Ext.swift in Sources */,
 				32570E502806503F0069FB33 /* SplitViewViewController.swift in Sources */,
 				326925282806F38500315413 /* DetailViewControllerViewModel.swift in Sources */,
 				324C86672804E71A008F4AED /* Forecast.swift in Sources */,
@@ -314,6 +321,7 @@
 				81D27DBB27E1F00600C849E5 /* AppDelegate.swift in Sources */,
 				32D7F7FA2807BF56008468B3 /* AttributeCell.swift in Sources */,
 				32D1F21328078B2000EB8958 /* UIImage+Ext.swift in Sources */,
+				32B8E2222807FFDE00675544 /* Error.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

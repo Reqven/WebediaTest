@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ImageDownloadDelegate {
-  func didDownloadImage()
+  func didDownloadImage(error: Bool)
 }
 
 class DetailViewControllerViewModel: NSObject {
@@ -43,10 +43,13 @@ class DetailViewControllerViewModel: NSObject {
       guard let self = self else { return }
       
       switch(result) {
-        case .failure(let error): print(error)
+        case .failure(let error): DispatchQueue.main.async {
+          print(error.localizedDescription)
+          self.delegate?.didDownloadImage(error: true)
+        }
         case .success(let image): DispatchQueue.main.async {
           self.forecast.image = image
-          self.delegate?.didDownloadImage()
+          self.delegate?.didDownloadImage(error: false)
         }
       }
     }
