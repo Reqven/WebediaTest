@@ -45,6 +45,9 @@
 		326925272806F38500315413 /* DetailViewControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerViewModel.swift; sourceTree = "<group>"; };
 		32B8E2212807FFDE00675544 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		32B8E2232808005700675544 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		32B8E227280805A900675544 /* 3.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.PNG; sourceTree = "<group>"; };
+		32B8E228280805A900675544 /* 2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.PNG; sourceTree = "<group>"; };
+		32B8E229280805A900675544 /* 1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.PNG; sourceTree = "<group>"; };
 		32D1F21228078B2000EB8958 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		32D7F7E628079EA3008468B3 /* ForecastCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCellViewModel.swift; sourceTree = "<group>"; };
 		32D7F7E82807A855008468B3 /* ForecastViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModelItem.swift; sourceTree = "<group>"; };
@@ -156,6 +159,24 @@
 			path = Split;
 			sourceTree = "<group>";
 		};
+		32B8E2252808058900675544 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				32B8E2262808059700675544 /* Screenshots */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		32B8E2262808059700675544 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				32B8E229280805A900675544 /* 1.PNG */,
+				32B8E228280805A900675544 /* 2.PNG */,
+				32B8E227280805A900675544 /* 3.PNG */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		32D1F21128078B1500EB8958 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +234,7 @@
 		81D27DB927E1F00600C849E5 /* WebediaTest */ = {
 			isa = PBXGroup;
 			children = (
+				32B8E2252808058900675544 /* Resources */,
 				32570E51280664FA0069FB33 /* Controllers */,
 				32D1F21128078B1500EB8958 /* Extensions */,
 				324C866E2805072F008F4AED /* Enums */,
