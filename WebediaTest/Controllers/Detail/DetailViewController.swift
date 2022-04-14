@@ -4,8 +4,8 @@
 
 import UIKit
 
-protocol ImageDownloadDelegate {
-  func didDownloadImage()
+protocol ForecastUpdateDelegate {
+  func didUpdateForecast()
 }
 
 class DetailViewController: UIViewController {
@@ -18,7 +18,9 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var lowLabel: UILabel!
   @IBOutlet weak var chanceOfRainLabel: UILabel!
   @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var downloadButton: UIButton!
   
+  var delegate: ForecastUpdateDelegate?
   var viewModel: DetailViewControllerViewModel? {
     didSet {
       viewModel?.delegate = self
@@ -62,6 +64,8 @@ extension DetailViewController {
     lowLabel.text = viewModel.low
     chanceOfRainLabel.text = viewModel.rain
     imageView.image = viewModel.image
+    
+    downloadButton.isHidden = viewModel.image != nil
   }
 }
 
@@ -70,6 +74,7 @@ extension DetailViewController {
 extension DetailViewController: ImageDownloadDelegate {
   
   func didDownloadImage() {
+    delegate?.didUpdateForecast()
     updateView()
   }
 }

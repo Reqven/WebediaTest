@@ -7,16 +7,20 @@
 
 import UIKit
 
+protocol ImageDownloadDelegate {
+  func didDownloadImage()
+}
+
 class DetailViewControllerViewModel {
   
   //MARK: - Properties
   private var forecast: Forecast
   var delegate: ImageDownloadDelegate?
   
-  public private(set) var image: UIImage?
   var title: String { "Day \(forecast.day)" }
   var description: String { forecast.description }
   
+  var image: UIImage? { forecast.image }
   var low: String { "\(forecast.low)ºC" }
   var high: String { "\(forecast.high)ºC" }
   var rain: String { "\(forecast.chanceRain)%" }
@@ -30,14 +34,14 @@ class DetailViewControllerViewModel {
   }
   
   func downloadImage() {
-    guard let imageUrl = URL(string: forecast.image) else { return }
+    guard let imageUrl = URL(string: forecast.imageUrl) else { return }
     Network.image(from: imageUrl) { [weak self] result in
       guard let self = self else { return }
       
       switch(result) {
         case .failure(let error): print(error)
         case .success(let image): DispatchQueue.main.async {
-          self.image = image
+          self.forecast.image = image
           self.delegate?.didDownloadImage()
         }
       }

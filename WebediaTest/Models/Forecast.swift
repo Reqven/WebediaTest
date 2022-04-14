@@ -5,17 +5,18 @@
 //  Created by Manu on 12/04/2022.
 //
 
-import Foundation
+import UIKit
 
-struct Forecast: Codable {
+class Forecast: Codable {
   let day: String
-  var description: String
+  let description: String
   let sunrise: Int
   let sunset: Int
   let chanceRain: Double
   let high: Int
   let low: Int
-  let image: String
+  let imageUrl: String
+  var image: UIImage?
   
   enum CodingKeys: String, CodingKey {
     case day
@@ -25,7 +26,7 @@ struct Forecast: Codable {
     case chanceRain = "chance_rain"
     case high
     case low
-    case image
+    case imageUrl = "image"
   }
 }
 

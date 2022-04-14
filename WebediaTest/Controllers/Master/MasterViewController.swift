@@ -55,7 +55,17 @@ extension MasterViewController: ForecastListDelegate {
     guard let rootNavigationController = splitViewController.detailRootController else { return }
     guard let detailViewController = rootNavigationController.topViewController as? DetailViewController else { return }
     
+    detailViewController.delegate = self
     detailViewController.viewModel = DetailViewControllerViewModel(forecast: forecast)
     splitViewController.showDetailViewController(rootNavigationController, sender: self)
+  }
+}
+
+
+//MARK: - ForecastUpdateDelegate
+extension MasterViewController: ForecastUpdateDelegate {
+  
+  func didUpdateForecast() {
+    tableView.reloadData()
   }
 }
